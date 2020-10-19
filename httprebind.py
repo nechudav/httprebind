@@ -64,8 +64,7 @@ def dns_response(data):
     qtype = request.q.qtype
     qt = QTYPE[qtype]
     if base in str(qname) and not str(qname).startswith('a'):
-        print
-        'DNS request for:', str(qname).strip('.')
+        print('DNS request for:', str(qname).strip('.'))
 
     if qn == D or qn.endswith('.' + D):
         for name, rrs in records.items():
@@ -256,8 +255,7 @@ waits = 0
 def wait():
     global waits
     waits += 1
-    print
-    'Wait', waits
+    print('Wait', waits)
     sleep(1)
     return 'waited'
 
@@ -265,16 +263,14 @@ def wait():
 @app.route('/log')
 @cross_origin()
 def log():
-    print
-    request.args['msg']
+    print(request.args['msg'])
     return 'logged'
 
 
 @app.route('/rebind')
 @cross_origin()
 def rebind():
-    print
-    'Rebound DNS'
+    print('Rebound DNS')
     if mode == 'ecs':
         records[D.ex][0] = A('169.254.170.2')
     else:
@@ -284,8 +280,7 @@ def rebind():
 
 @app.route('/loaded')
 def loaded():
-    print
-    'Page loaded'
+    print('Page loaded')
     return 'loaded'
 
 
